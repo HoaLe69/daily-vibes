@@ -10,11 +10,12 @@ import { type MoodEntry } from './types/MoodEntry';
 import MoodInput from './components/MoodInput';
 import MoodEntriesList from './components/MoodEntriesList';
 import { useThemeContext } from './context/themeHooks';
+import { useDailyVibes } from './hooks/useDailyVibes';
 
 function App() {
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const [note, setNote] = useState<string>('');
-  const [moodEntries, setMoodEntries] = useState<MoodEntry[]>([]);
+  const { moodEntries, addMoodEntry } = useDailyVibes();
   const { toggleColorMode, mode } = useThemeContext();
 
   const handleSubmit = () => {
@@ -25,7 +26,7 @@ function App() {
         note: note,
         date: new Date().toLocaleDateString(),
       };
-      setMoodEntries([...moodEntries, newEntry]);
+      addMoodEntry(newEntry);
       setSelectedMood(null);
       setNote('');
     }
