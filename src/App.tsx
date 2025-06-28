@@ -3,15 +3,19 @@ import {
   Container,
   Typography,
   Paper,
+  Box,
+  Button
 } from '@mui/material';
 import { type MoodEntry } from './types/MoodEntry';
 import MoodInput from './components/MoodInput';
 import MoodEntriesList from './components/MoodEntriesList';
+import { useThemeContext } from './context/themeHooks';
 
 function App() {
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const [note, setNote] = useState<string>('');
   const [moodEntries, setMoodEntries] = useState<MoodEntry[]>([]);
+  const { toggleColorMode, mode } = useThemeContext();
 
   const handleSubmit = () => {
     if (selectedMood) {
@@ -30,9 +34,14 @@ function App() {
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
       <Paper elevation={3} sx={{ p: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom align="center">
-          Daily Vibes
-        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Daily Vibes
+          </Typography>
+          <Button onClick={toggleColorMode} variant="outlined">
+            Toggle {mode === 'light' ? 'Dark' : 'Light'} Mode
+          </Button>
+        </Box>
 
         <MoodInput
           selectedMood={selectedMood}
