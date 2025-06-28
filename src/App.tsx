@@ -36,9 +36,9 @@ function App() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 4 }}>
-      <Paper elevation={3} sx={{ p: 4, bgcolor: theme.palette.background.default }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+    <Container maxWidth="md">
+      <Paper square sx={{ height: '100%', width: '100%', bgcolor: theme.palette.background.default, borderRadius: 0, boxShadow: 'none' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2, mb: 2 }}>
           <Typography variant="h4" component="h1" gutterBottom>
             Daily Vibes
           </Typography>
@@ -47,18 +47,22 @@ function App() {
           </Button>
         </Box>
 
-        <MoodInput
-          selectedMood={selectedMood}
-          setSelectedMood={(mood) => {
-            setSelectedMood(mood);
-            setSelectedMoodEmoji(mood);
-          }}
-          note={note}
-          setNote={setNote}
-          handleSubmit={handleSubmit}
-        />
+        <Box sx={{ p: 2 }}>
+          <MoodInput
+            selectedMood={selectedMood}
+            setSelectedMood={(mood) => {
+              setSelectedMood(mood);
+              setSelectedMoodEmoji(mood);
+            }}
+            note={note}
+            setNote={setNote}
+            handleSubmit={handleSubmit}
+          />
+        </Box>
 
-        <MoodEntriesList moodEntries={moodEntries} />
+        <Box sx={{ p: 2 }}>
+          <MoodEntriesList moodEntries={moodEntries} />
+        </Box>
       </Paper>
     </Container>
   );
