@@ -42,8 +42,10 @@ const MoodInput: React.FC<MoodInputProps> = ({
                 p: 1,
                 borderRadius: '8px',
                 bgcolor: selectedMood === emoji ? theme.palette.action.selected : 'transparent',
+                transition: 'background-color 0.3s ease, transform 0.3s ease',
                 '&:hover': {
                   bgcolor: theme.palette.action.hover,
+                  transform: 'scale(1.1)',
                 },
               }}
             >
