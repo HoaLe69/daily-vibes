@@ -3,7 +3,8 @@ import {
   Typography,
   Box,
   Paper,
-  Grid
+  Grid,
+  useTheme
 } from '@mui/material';
 import { type MoodEntry } from '../types/MoodEntry';
 
@@ -14,6 +15,8 @@ interface MoodEntriesListProps {
 const MoodEntriesList: React.FC<MoodEntriesListProps> = ({
   moodEntries
 }) => {
+  const theme = useTheme();
+
   return (
     <Box sx={{ mt: 4 }}>
       <Typography variant="h5" component="h2" gutterBottom align="center">
@@ -27,7 +30,7 @@ const MoodEntriesList: React.FC<MoodEntriesListProps> = ({
         <Grid container spacing={2}>
           {moodEntries.map((entry) => (
             <Grid item xs={12} key={entry.id}>
-              <Paper variant="outlined" sx={{ p: 2 }}>
+              <Paper variant="outlined" sx={{ p: 2, bgcolor: theme.palette.background.paper }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
                   <Typography variant="h6">{entry.mood}</Typography>
                   <Typography variant="body2" color="text.secondary">{entry.date}</Typography>

@@ -4,7 +4,8 @@ import {
   Typography,
   Paper,
   Box,
-  Button
+  Button,
+  useTheme
 } from '@mui/material';
 import { type MoodEntry } from './types/MoodEntry';
 import MoodInput from './components/MoodInput';
@@ -16,7 +17,8 @@ function App() {
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const [note, setNote] = useState<string>('');
   const { moodEntries, addMoodEntry } = useDailyVibes();
-  const { toggleColorMode, mode } = useThemeContext();
+  const { toggleColorMode, mode, setSelectedMoodEmoji } = useThemeContext();
+  const theme = useTheme();
 
   const handleSubmit = () => {
     if (selectedMood) {
@@ -29,12 +31,13 @@ function App() {
       addMoodEntry(newEntry);
       setSelectedMood(null);
       setNote('');
+      setSelectedMoodEmoji(null); // Reset mood color after submission
     }
   };
 
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
+      <Paper elevation={3} sx={{ p: 4, bgcolor: theme.palette.background.default }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
           <Typography variant="h4" component="h1" gutterBottom>
             Daily Vibes
@@ -46,7 +49,10 @@ function App() {
 
         <MoodInput
           selectedMood={selectedMood}
-          setSelectedMood={setSelectedMood}
+          setSelectedMood={(mood) => {
+            setSelectedMood(mood);
+            setSelectedMoodEmoji(mood);
+          }}
           note={note}
           setNote={setNote}
           handleSubmit={handleSubmit}

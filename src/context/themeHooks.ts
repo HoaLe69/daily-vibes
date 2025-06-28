@@ -4,6 +4,7 @@ import { type PaletteMode } from '@mui/material';
 export interface ThemeContextType {
   toggleColorMode: () => void;
   mode: PaletteMode;
+  setSelectedMoodEmoji: (emoji: string | null) => void;
 }
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);

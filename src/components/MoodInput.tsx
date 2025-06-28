@@ -4,7 +4,8 @@ import {
   TextField,
   Button,
   Box,
-  IconButton
+  IconButton,
+  useTheme
 } from '@mui/material';
 
 interface MoodInputProps {
@@ -23,6 +24,7 @@ const MoodInput: React.FC<MoodInputProps> = ({
   handleSubmit,
 }) => {
   const emojis = ['😊', '😂', '😍', '😎', '😢', '😡', '😴', '🥳'];
+  const theme = useTheme();
 
   return (
     <>
@@ -39,9 +41,9 @@ const MoodInput: React.FC<MoodInputProps> = ({
                 fontSize: '2rem',
                 p: 1,
                 borderRadius: '8px',
-                bgcolor: selectedMood === emoji ? 'action.selected' : 'transparent',
+                bgcolor: selectedMood === emoji ? theme.palette.action.selected : 'transparent',
                 '&:hover': {
-                  bgcolor: 'action.hover',
+                  bgcolor: theme.palette.action.hover,
                 },
               }}
             >
@@ -76,7 +78,7 @@ const MoodInput: React.FC<MoodInputProps> = ({
         fullWidth
         onClick={handleSubmit}
         disabled={!selectedMood}
-        sx={{ mb: 4 }}
+        sx={{ mb: 4, bgcolor: theme.palette.primary.main, '&:hover': { bgcolor: theme.palette.primary.dark } }}
       >
         Submit Mood
       </Button>
