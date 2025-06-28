@@ -32,7 +32,7 @@ const MoodInput: React.FC<MoodInputProps> = ({
         <Typography variant="h6" gutterBottom>
           How are you feeling today?
         </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: { xs: 0.5, sm: 1 } }}>
           {emojis.map((emoji) => (
             <IconButton
               key={emoji}
