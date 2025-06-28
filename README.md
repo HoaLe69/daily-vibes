@@ -1,69 +1,48 @@
-# React + TypeScript + Vite
+# Vibe Coding with Gemini
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project was built interactively with Gemini, showcasing a "vibe coding" session. Here's a brief overview of our progress:
 
-Currently, two official plugins are available:
+*   **Project Setup:** Initiated a React-TypeScript project using Vite and Bun.
+*   **UI Enhancement:** Integrated Material-UI for a modern and clean user interface.
+*   **Code Refactoring:** Reorganized the project structure into `components` and `types` directories for better maintainability and separation of concerns.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Daily Vibes App
 
-## Expanding the ESLint configuration
+A simple React application built with Vite and Material-UI to track your daily moods and notes.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+*   Select your mood from a list of emojis.
+*   Add an optional note to your mood entry.
+*   View a list of past mood entries with dates and notes.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Technologies Used
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+*   React
+*   TypeScript
+*   Vite
+*   Material-UI
+*   Bun (package manager)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Getting Started
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+To run this project locally, follow these steps:
+
+1.  **Clone the repository (if applicable):**
+    ```bash
+    git clone <repository-url>
+    cd daily-vibes-app
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    bun install
+    ```
+
+3.  **Start the development server:**
+    ```bash
+    bun run dev
+    ```
+
+    The application will be available at `http://localhost:5173` (or another port if 5173 is in use).
