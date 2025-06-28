@@ -1,4 +1,14 @@
 import { useState } from 'react';
+import {
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Box,
+  Paper,
+  IconButton,
+  Grid
+} from '@mui/material';
 
 interface MoodEntry {
   id: number;
@@ -29,80 +39,88 @@ function App() {
   };
 
   return (
-    <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '20px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-      <h1 style={{ textAlign: 'center', color: '#333' }}>Daily Vibes</h1>
+    <Container maxWidth="sm" sx={{ mt: 4 }}>
+      <Paper elevation={3} sx={{ p: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom align="center">
+          Daily Vibes
+        </Typography>
 
-      <div style={{ marginBottom: '20px', textAlign: 'center' }}>
-        <h2 style={{ color: '#555' }}>How are you feeling today?</h2>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', fontSize: '30px' }}>
-          {emojis.map((emoji) => (
-            <span
-              key={emoji}
-              onClick={() => setSelectedMood(emoji)}
-              style={{
-                cursor: 'pointer',
-                padding: '10px',
-                borderRadius: '5px',
-                backgroundColor: selectedMood === emoji ? '#e0e0e0' : 'transparent',
-              }}
-            >
-              {emoji}
-            </span>
-          ))}
-        </div>
-        {selectedMood && (
-          <p style={{ marginTop: '10px', fontSize: '20px' }}>You selected: {selectedMood}</p>
-        )}
-      </div>
-
-      <div style={{ marginBottom: '20px' }}>
-        <h2 style={{ color: '#555' }}>Optional: Add a note</h2>
-        <textarea
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-          placeholder="Write a short note about your mood..."
-          rows={4}
-          style={{ width: '100%', padding: '10px', border: '1px solid #ddd', borderRadius: '4px', boxSizing: 'border-box' }}
-        ></textarea>
-      </div>
-
-      <button
-        onClick={handleSubmit}
-        disabled={!selectedMood}
-        style={{
-          display: 'block',
-          width: '100%',
-          padding: '10px 15px',
-          backgroundColor: selectedMood ? '#007bff' : '#cccccc',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          fontSize: '16px',
-          cursor: selectedMood ? 'pointer' : 'not-allowed',
-        }}
-      >
-        Submit Mood
-      </button>
-
-      <div style={{ marginTop: '30px' }}>
-        <h2 style={{ textAlign: 'center', color: '#333' }}>Past Mood Entries</h2>
-        {moodEntries.length === 0 ? (
-          <p style={{ textAlign: 'center', color: '#777' }}>No entries yet. Submit your first mood!</p>
-        ) : (
-          <ul style={{ listStyle: 'none', padding: 0 }}>
-            {moodEntries.map((entry) => (
-              <li key={entry.id} style={{ background: '#f9f9f9', padding: '15px', marginBottom: '10px', borderRadius: '6px', border: '1px solid #eee' }}>
-                <p style={{ margin: '0 0 5px 0', fontSize: '18px' }}>
-                  <span style={{ marginRight: '10px' }}>{entry.mood}</span>
-                  <span style={{ fontSize: '14px', color: '#888' }}>{entry.date}</span>
-                </p>
-                {entry.note && <p style={{ margin: '0', color: '#666' }}>Note: {entry.note}</p>}
-              </li>
+        <Box sx={{ mb: 3, textAlign: 'center' }}>
+          <Typography variant="h6" gutterBottom>
+            How are you feeling today?
+          </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
+            {emojis.map((emoji) => (
+              <IconButton
+                key={emoji}
+                onClick={() => setSelectedMood(emoji)}
+                sx={{
+                  fontSize: '2rem',
+                  p: 1,
+                  borderRadius: '8px',
+                  bgcolor: selectedMood === emoji ? 'action.selected' : 'transparent',
+                  '&:hover': {
+                    bgcolor: 'action.hover',
+                  },
+                }}
+              >
+                {emoji}
+              </IconButton>
             ))}
-          </ul>
+          </Box>
+          {selectedMood && (
+            <Typography variant="subtitle1" sx={{ mt: 2 }}>
+              You selected: {selectedMood}
+            </Typography>
+          )}
+        </Box>
+
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="h6" gutterBottom>
+            Optional: Add a note
+          </Typography>
+          <TextField
+            fullWidth
+            multiline
+            rows={4}
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            placeholder="Write a short note about your mood..."
+            variant="outlined"
+          />
+        </Box>
+
+        <Button
+          variant="contained"
+          fullWidth
+          onClick={handleSubmit}
+          disabled={!selectedMood}
+          sx={{ mb: 4 }}
+        >
+          Submit Mood
+        </Button>
+
+        <Typography variant="h5" component="h2" gutterBottom align="center">
+          Past Mood Entries
+        </Typography>
+        {moodEntries.length === 0 ? (
+          <Typography variant="body1" align="center" color="text.secondary">
+            No entries yet. Submit your first mood!
+          </Typography>
+        ) : (
+          <Grid container spacing={2}>
+            {moodEntries.map((entry) => (
+              <Grid item xs={12} key={entry.id}>
+                <Paper variant="outlined" sx={{ p: 2 }}>
+                  <Typography variant="body1">{entry.mood} - {entry.date}</Typography>
+                  {entry.note && <Typography variant="body2">Note: {entry.note}</Typography>}
+                </Paper>
+              </Grid>
+            ))}
+          </Grid>
         )}
-      </div>
-    </div>
+      </Paper>
+    </Container>
   );
 }
 
