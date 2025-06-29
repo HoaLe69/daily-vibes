@@ -12,6 +12,7 @@ import MoodInput from './components/MoodInput';
 import MoodEntriesList from './components/MoodEntriesList';
 import { useThemeContext } from './context/themeHooks';
 import { useDailyVibes } from './hooks/useDailyVibes';
+import MoodCalendar from './components/MoodCalendar';
 
 function App() {
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
@@ -60,6 +61,7 @@ function App() {
           />
 
           <MoodEntriesList moodEntries={moodEntries} />
+          <MoodCalendar moodEntries={moodEntries} />
         </Box>
       </Paper>
     </Container>

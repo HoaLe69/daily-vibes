@@ -1,7 +1,20 @@
 import { type PaletteOptions } from '@mui/material';
 
-interface MoodColorMap {
-  [key: string]: Partial<PaletteOptions>;
+interface MoodPaletteColors {
+  main: string;
+}
+
+interface MoodPalette extends PaletteOptions {
+  primary?: MoodPaletteColors;
+  secondary?: MoodPaletteColors;
+  background?: {
+    default?: string;
+    paper?: string;
+  };
+}
+
+export interface MoodColorMap {
+  [key: string]: MoodPalette;
 }
 
 export const moodColorMap: MoodColorMap = {
